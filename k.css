@@ -1,0 +1,12 @@
+#navbar{
+   text-align:center; 
+}
+
+#navbar li{
+    display:inline-block;
+    border: 3px solid black;
+}
+
+#navbar a{
+    
+}
