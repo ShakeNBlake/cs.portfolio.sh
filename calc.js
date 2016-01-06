@@ -8,8 +8,26 @@ var dropdown = document.getElementById("dropdown");
 button.addEventListener("click", doMath);
 
 function doMath() {
+    
+    var number1 = parseInt(input1.value);
+    var number2 = parseInt(input2.value);
+    
+    
     if  (dropdown.value == "+"){
-        answer = parseInt(input1.value) + parseInt(input2.value);
+        answer = number1 + number2;
         display.innerHTML = answer;
+    }
+
+    if  (dropdown.value =="-"){
+        total = number1 - number2;
+        display.innerHTML = answer;
+    }
+    if  (dropdown.value =="x"){
+        total = number1 - number2;
+        display.innerHTML = answer;
+    }
+    if  (dropdown.value =="/"){
+        total = number1 - number2;
+        display.innerHTML = (total);
     }
 }
