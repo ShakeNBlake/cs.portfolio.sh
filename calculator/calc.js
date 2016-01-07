@@ -19,15 +19,19 @@ function doMath() {
     }
 
     if  (dropdown.value =="-"){
-        total = number1 - number2;
+        answer = number1 - number2;
         display.innerHTML = answer;
     }
-    if  (dropdown.value =="x"){
-        total = number1 - number2;
+    if  (dropdown.value =="*"){
+        answer = number1 * number2;
         display.innerHTML = answer;
     }
     if  (dropdown.value =="/"){
-        total = number1 - number2;
-        display.innerHTML = (total);
+        answer = number1 / number2;
+        display.innerHTML = answer;
+    }
+    if (dropdown.value =="^"){
+        answer = Math.pow(number1, number2);
+        display.innerHTML = answer;
     }
 }
