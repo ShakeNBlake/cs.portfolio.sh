@@ -1,0 +1,17 @@
+body {
+    background-image: url("http://www.download-free-wallpaper.com/img11/mjjvbpwdiuxumqreluue.jpg");
+    background-repeat: no-repeat;
+}
+p {
+    font-size: 200%;
+}
+
+#input1 {
+    height: 30px;
+    width: 100px;
+}
+
+#input2 {
+    height: 30px;
+    width: 100px;
+}

@@ -5,7 +5,7 @@
 #navbar li{
     display:inline-block;
     border: 3px solid black;
-    background color: blue;
+    background: color blue;
     font-size: 20px;
     transform: 0.5s all linear;
 }
@@ -13,5 +13,6 @@
 #navbar a{
     
 }
-
-
+h1 {
+    text-align:center;
+}
