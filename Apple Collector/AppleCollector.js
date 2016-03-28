@@ -1,7 +1,15 @@
 var mycanvas = document.getElementById("mycanvas");
 var ctx = mycanvas.getContext("2d");
-var mycanvas = document.getElementById("snake");
-var snake
+var apples = [];
+var block;
+var canvas;
+var food;
+var snake;
+var GameObject;
+var yield;
+var currentEnemy;
+var Instantiate;
+
 var box = {
     xPos: 20,
     yPos: 50,
@@ -28,6 +36,17 @@ var box = {
     draw: function(){
         ctx.rect(box.xPos,box.yPos,20,20);
         ctx.fillRect(box.xPos,box.yPos ,20,20);
+        ctx.stroke();
+    }
+}
+
+function Apple(xPos, yPos){
+    this.xPos = xPos;
+    this.yPos = yPos;
+    this.height = 10;
+    this.width = 10;
+    this.draw = function(){
+        ctx.rect(this.xPos, this.yPos, this.height, this.width);
         ctx.stroke();
     }
 }
@@ -61,13 +80,20 @@ document.addEventListener("keyup", function(evt){
     if(evt.keyCode === 40){
         box.goDown = false;        
     }    
-})
+});
 
 function gameLoop(){
     ctx.beginPath();
     ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
     box.move();
     box.draw();
+    
+    for(var i = 0; i < Apple.length; i++){
+        if(isColliding(Apple, box[i])){
+            apples.splice(apples, 1);
+        }
+    }
+    
     window.requestAnimationFrame(gameLoop);
 }
 
@@ -115,4 +141,34 @@ function gameLoop(){
                 ctx.closePath();
             }
         }
+function isColliding(thing1, thing2){
+    console.log(thing1, thing2);
+    var isLeft = thing2.xPos + thing2.width < thing1.xPos;
+    var isRight = thing2.xPos > thing1.xPos + thing1.width;
+    var isBelow = thing2.yPos + thing2.height < thing1.yPos;
+    var isAbove = thing2.yPos > thing1.yPos + thing1.height;
+    return !(isRight||isLeft||isAbove||isBelow);
+    
+    public  :GameObject;
+public :ArrayList = new ArrayList();
+ 
+var enemyNumber = 1;
+var maxEnemies = 5;
+ 
+function Update()
+{
+    spawnEnemy();
+}
+ 
+function spawnEnemy()
+{
+    while(enemyNumber < (maxEnemies))
+    {
+        yield (15);
+        currentEnemy = Instantiate(enemyPrefab, transform.position, transform.rotation);
+        enemyNumber++;
+ 
+    }
+}
+}
 gameLoop();
