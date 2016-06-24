@@ -9,10 +9,17 @@ var GameObject;
 var yield;
 var currentEnemy;
 var Instantiate;
+var applegenerator =window.setInterval(function () {
+    apples.push(new Apple(Math.random()*mycanvas.width, Math.random()*mycanvas.height))
+    })
+    
+    
 
 var box = {
     xPos: 20,
     yPos: 50,
+    width: 30,
+    length: 30,
     goLeft: false,
     goRight: false,
     goUp: false,
@@ -88,8 +95,8 @@ function gameLoop(){
     box.move();
     box.draw();
     
-    for(var i = 0; i < Apple.length; i++){
-        if(isColliding(Apple, box[i])){
+    for(var i = 0; i < apples.length; i++){
+        if(isColliding(apples[i], box)){
             apples.splice(apples, 1);
         }
     }

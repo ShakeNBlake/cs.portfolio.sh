@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="Vindinium.css" type="text/css" />
+    <title>Vindinium Info Website </title>
+</head>
+
+<style>
+    body {
+        background-image: url("http://www.texturezine.com/wp-content/uploads/2014/05/red-polygon.jpg");
+        ;
+    }
+    
+    ul {
+        list-style-type: none;
+    }
+    
+    a:link,
+    a:visited {
+        background-color: grey;
+        text-decoration: none;
+        color: white;
+        display: block;
+        width: 100px;
+        padding: 30px;
+        text-align: center;
+        border: 3px solid black;
+    }
+    
+    a:hover {
+        background-color: blue
+    }
+    
+    a:active {
+        background-color: lightblue
+    }
+    
+    p {
+        border: 3px solid black;
+        background-color: white;
+    }
+    
+    p {
+        padding-top: 25px;
+        padding-right: 25px;
+        padding-bottom: 25px;
+        padding-left: 25px;
+    }
+</style>
+
+<body>
+
+    <ul id="navbar">
+        <li> <a href="Index.html">Back</a> </li>
+
+    </ul>
+    <h1><font color="white">This is my Vindinium Website</font></h1>
+    <p class="para1">Vindinium is a website where you can code your own bot to be the best of the best! Your goal of the game is to have the most gold by the end of the 1200 turns. There are 4 players and they each also code their own bots. You can code your bot to steal
+        enemy mines, kill other bots, or you can have both of them! </p>
+
+    <br>
+    <p class="para2">For our project, we were to create a bot that could steal, heal, and fight. But first we had to learn how to even get a mine. Many of us raced to learn how to steal each others mines, and one by one, we each found how how to steal a mine. But even
+        though we found out how to steal, we died because we lost too much dealth trying to steal and take free mines. Below is the code that I used to program my bot, BOT_Blake.
+        <p>
+
+            <code>
+<br>
+<br>
+<strong>//this talks about where the bot will be playing and you can pick where you want to play, either in training (where you can't lose points) or in arena (where you can lose points)//</strong>
+<br>
+<br>
+var Bot = require('bot');
+<br>
+var PF = require('pathfinding');
+<br>
+// var bot = new Bot('fbhyyw8b', 'training', 'http://vindinium.org');// //Put your bot's code here and change training to Arena when you want to fight others.
+<br>
+var bot = new Bot('9q4th63k', 'arena', 'http://52.53.211.7:9000'); //Put your bot's code here and change training to Arena when you want to fight others.
+<br>
+var goDir;
+<br>
+var Promise = require('bluebird');
+<br>
+Bot.prototype.botBrain = function() {
+<br>
+    return new Promise(function(resolve, reject) {
+    <br>
+        _this = bot;
+        <br>
+        <br>
+        ___________________________________________________________________________________________________________________________________________________________________________________________________________
+        <br>
+        <br>
+        //////* Write your bot below Here *//////
+        <br>
+
+        /*                                      *
+        <br>
+         * This Code is global data!            *
+         <br>
+         *                                      */
+         <br>
+
+        <strong> // This tells my bot to go find enemy bots or enemy mines // </strong>
+        <br>
+        var myDir;
+        <br>
+        var myPos = [bot.yourBot.pos.x, bot.yourBot.pos.y];
+        <br>
+        
+
+        var enemyBots = [];
+        <br>
+        if (bot.yourBot.id != 1) enemyBots.push(bot.bot1);
+        <br>
+        if (bot.yourBot.id != 2) enemyBots.push(bot.bot2);
+        <br>
+        if (bot.yourBot.id != 3) enemyBots.push(bot.bot3);
+        <br>
+        if (bot.yourBot.id != 4) enemyBots.push(bot.bot4);
+        <br>
+
+        var enemyMines = [];
+        <br>
+        if (bot.yourBot.id != 1) enemyMines = enemyMines.concat(bot.Bot1mines);
+        <br>
+        if (bot.yourBot.id != 2) enemyMines = enemyMines.concat(bot.Bot2mines);
+        
+        <br>
+        <br>
+        ___________________________________________________________________________________________________________________________________________________________________________________________________________
+        <br>
+        <br>
+        <strong>// This tells my bot what it wants to do. It is put in priority order, which means that the bot will take care of its health first, then go for free mines, then steal mines, then fight.//</strong>
+
+        /*                                      *
+        <br>
+         * This Code Decides WHAT to do         *
+         <br>
+         *                                      */
+         <br>
+        var task;
+        <br>
+        if (bot.yourBot.life <= 40) {
+        <br>
+            task = "Lowlife";
+            <br>
+        }
+        <br>
+        else if("freemines") {
+        <br>
+            task = "freemines";
+            <br>
+        }
+        <br>
+        else if("stealing"){
+        <br>
+            task = "Stealing";
+            <br>
+        }
+        <br>
+         else {
+         <br>
+            task = "Attack";
+            <br>
+        }
+        <br>
+        <br>
+        ___________________________________________________________________________________________________________________________________________________________________________________________________________
+        <br>
+        <br>
+
+
+
+        /*                                      *
+        <br>
+         * This Code Determines HOW to do it    *
+         <br>
+         *                                      */
+         <br>
+
+        <strong>// This Code finds the closest free mine and tells the bot to go and take it. //</strong>
+        <br>
+
+        if (task === "freemines") {
+        <br>
+            var closestMine = bot.freeMines[0];
+            <br>
+            for (i = 0; i < bot.freeMines.length; i++) {
+            <br>
+                if (bot.findDistance(myPos, closestMine) > bot.findDistance(myPos, bot.freeMines[i])) {
+                <br>
+                    closestMine = bot.freeMines[i];
+                    <br>
+                }
+                <br>
+            }
+            <br>
+            console.log("Claiming a Free Mine!");
+            <br>
+            myDir = bot.findPath(myPos, closestMine);
+            <br>
+
+        }
+        <br>
+
+
+        if (task === "Lowlife") {
+        <br>
+            var closestTavern = bot.taverns[0]
+            <br>
+            for (i = 0; i < bot.taverns.length; i++) {
+            <br>
+                if (bot.findDistance(myPos, closestTavern) > bot.findDistance(myPos, bot.taverns[i])) {}
+                <br>
+            }
+            <br>
+
+            console.log("Healing")
+            <br>
+            myDir = bot.findPath(myPos, closestTavern);
+            <br>
+
+
+        }
+        <br>
+
+
+        if (task === "Attack") {
+        <br>
+            var closestBot = enemyBots[0];
+            <br>
+            for (i = 0; i < enemyBots.length; i++) {
+            <br>
+                if (bot.findDistance(myPos, [closestBot.pos.x, closestBot.pos.y]) > bot.findDistance(myPos, [enemyBots[i].pos.x, enemyBots[i].pos.y])) {
+                <br>
+                    closestBot = enemyBots[i]
+                    <br>
+                }
+                <br>
+            }
+            <br>
+            console.log("Attack")
+            <br>
+            myDir = bot.findPath(myPos, [closestBot.pos.x, closestBot.pos.y])
+            <br>
+        }
+        <br>
+        
+        if(task === "Stealing") {
+        <br>
+            var takenMines = enemyMines
+            <br>
+            for (i = 0; i < enemyMines.length; i++) {
+            <br>
+                if (bot.findDistance(myPos, [closestMine.pos.x, closestMine.pos.y]) > bot.findDistance(myPos, [enemyMines[i].pos.x, enemyMines[i].pos.y])) {
+                <br>
+                    takenMines = enemyMines[i]
+                    <br>
+                }
+                <br>
+            }
+            <br>
+            console.log("Stealing")
+            <br>
+            myDir = bot.findPath(myPos, takenMines);
+            <br>
+        }
+        <br>
+        <br>
+    ___________________________________________________________________________________________________________________________________________________________________________________________________________
+        <br>
+        <br>
+
+        /*  
+        <br>*
+        <strong>//This code tells the bot to go in a random direction if it cannot reach the waypoint it set itself to go in that specific direction. 
+        This means that it tells the bot to find another way out if it is stuck then it will find its way back onto the course.//</strong>
+         <br>
+         * Otherwise you move in the directnode ion set by your code.  Feel free to change this code if you want.                            */
+         <br>
+        if (myDir === "none") {
+        <br>
+            console.log("Going Random!");
+            <br>
+            var rand = Math.floor(Math.random() * 4);
+            <br>
+            var dirs = ["north", "south", "east", "west"];
+            <br>
+            bot.goDir = dirs[rand];
+            <br>
+        }
+        <br>
+        else {
+        <br>
+            bot.goDir = myDir;
+            <br>
+        }
+        <br>
+        <br>
+___________________________________________________________________________________________________________________________________________________________________________________________________________
+        <br>
+        <br>
+        <strong>//This tells the website to run this script and keep repeating it, which makes the bot continuously which keep the bot moving and following its priority orders.//</strong
+
+        ///////////* DON'T REMOVE ANTYTHING BELOW THIS LINE *//////////////
+        <br>
+        resolve();
+        <br>
+    });
+    <br>
+}
+<br>
+bot.runGame();
+<br>
+
+</code>
+        </p>
+</body>
+
+</html>

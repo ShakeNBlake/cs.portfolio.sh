@@ -2,15 +2,15 @@
 <html>
     <head>
         <link rel="stylesheet" href="Animation.css" type="text/css" />
-        <link rel="Javascript" href="Animation.js" type="javascript" />
+       
         <title>Blake's Website </title>
     </head>
-    
+ }   
     <style>
         body {
-    background-image: url("http://www.clker.com/cliparts/L/e/S/6/F/V/carbon-fiber-wallpaper-x.svg");;
+    background-image: url("http://www.freehdimages.in/uploads/large/desktop-abstract-colors-background-download.jpg");;
 }
-ul{
+  ul{
         list-style-type:none;
     }
         
@@ -43,13 +43,35 @@ ul{
     padding-bottom: 25px;
     padding-left: 25px;
     }
+    .Picture {
+    padding-top: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+    padding-left: 25px;
+    border:3px solid black;
+    background-color:white;
+    }
+    
     </style>
     <body>
-        </ul>
+        <ul id="navbar">
+        <li> <a href="Index.html">Back</a> </li>
+        
 <h1><font color="white">Look at my model!</font></h1>
-<button type="button"
-onclick="document.getElementById('demo').innerHTML = Date()">
-Click me to turn left</button>
-<p></p>
+
+<p>I made this website so the user can look at an object while trying to make it 3D. 
+Click on the different buttons to move the object and look at the object at different angles.
+</p>
+
+<button id="button" class="button" >Click to go right!</button>
+<button id="button1" class="button1">Click to go left!</button>
+<img  id="hatImage" src="http://i.imgur.com/2ENI1iW.jpg" width="600" height="450">
+
+<center><p1 id="myImage"></p1></center>
+
+<script src="Animation.js">
+
+</script>
+
 </body>
 </html>

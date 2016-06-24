@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="calc.css">
+	
+	<title>Document</title>
+</head>
+ <style>
+    p {
+        border:3px solid black;
+        background-color:white;
+    }
+        h1{
+            text-align:center;
+            /*margin-left: auto;*/
+            /*margin-right: auto;*/
+            /*width: 20em*/
+        }
+        body {
+    background-image: url("http://www.wallcoo.net/cartoon/abstract_blue_backgrounds_1920x1200/wallpapers/1600x1200/Abstract%20Blue%20backgrounds%2034.jpg");
+    background-attachment:fixed;
+    background-size:cover;
+}
+
+ul{
+        list-style-type:none;
+    }
+        
+      a:link, a:visited {
+        background-color:grey;
+        text-decoration:none;
+        color:white;
+        display:block;
+        width: 100px;
+        padding: 30px;
+        text-align:center;
+        border:3px solid black;
+        }
+        
+        a:hover {
+            background-color:blue
+        }
+        
+        a:active {
+            background-color:lightblue
+        }
+        body {
+    text-align: center; 
+}
+    </style>
+    <body>
+        <ul id="navbar">
+            <li> <a href="Index.html">Back</a> </li>
+
+<input type ="text" name="input1" style="width:100px;" id="input1">
+
+    <select id="dropdown">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="^">^</option>
+        <option value="sqrt">sqrt</option>
+        
+    </select>
+    <input type ="text" name="input2" style="width:100px;" id="input2">
+    <input type="button" value="Calculate" id="submitButton" />
+
+    
+
+    <p>The answer is: <span id="display"></span></p>
+    
+<script src="calc.js" ></script>
+
+</body>
+</html>

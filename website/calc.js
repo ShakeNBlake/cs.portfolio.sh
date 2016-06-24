@@ -34,4 +34,8 @@ function doMath() {
         answer = Math.pow(number1, number2);
         display.innerHTML = answer;
     }
+    if (dropdown.value =="sqrt"){
+        answer = Math.sqrt(number1, number2);
+        display.innerHTML = answer;
+    }
 }
